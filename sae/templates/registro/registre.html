@@ -8,13 +8,13 @@
 <div class="flex h-screen bg-white flex-col lg:flex-row">
 
     <!-- Lado esquerdo: Formulário -->
-    <div class="flex w-full lg:w-1/2 flex-col items-center justify-center p-6 sm:p-10 lg:p-16 bg-white">
+    <div class="flex w-full flex-col items-center justify-center p-6 sm:p-10 lg:p-16 bg-white">
         <div class="w-full max-w-sm">
 
             <!-- Botões centralizados -->
-            <div class="flex justify-center space-x-3">
-                <button class="rounded-md bg-black px-6 py-2 font-semibold text-white">Registro</button>
-                <button class="rounded-md border border-black px-6 py-2 font-semibold text-gray-800">Entrar</button>
+            <div class="flex justify-between space-x-3">
+                <button class="rounded-md bg-black px-16 py-4 font-semibold text-white">Registro</button>
+                <button class="rounded-md border border-black px-16 py-4 font-semibold text-gray-800">Entrar</button>
             </div>
             
             <div class="mt-8 text-center lg:text-left">
@@ -25,7 +25,7 @@
                 {% csrf_token %}
 
                 <button type="button"
-                    class="flex w-full items-center justify-center rounded-lg border border-black py-2.5 hover:bg-gray-50">
+                    class="flex w-full items-center justify-center rounded-lg border border-black px-16 py-4 hover:bg-gray-50">
                     <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" class="mr-2 h-6 w-6">
                     Registrar-se com Google
                 </button>
@@ -43,7 +43,7 @@
                     class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
                 <div class="text-right">
-                    <a href="#" class="text-xs font-medium text-gray-600 hover:underline">
+                    <a href="#" class="text-md font-medium text-gray-600 hover:underline">
                         Esqueci a senha
                     </a>
                 </div>
@@ -56,11 +56,12 @@
         </div>
     </div>
 
-    <!-- Lado direito: Imagem -->
-    <div class="relative w-full lg:w-1/2 h-64 lg:h-auto">
+        <!-- Lado direito: Imagem -->
+    <div class="relative w-1/2"> <!-- Adicionei a margem negativa aqui -->
         <img src="{% static 'imagens/estudos.png' %}" alt="Estude"
-             class="h-full w-full object-cover object-top">
+             class="w-full h-full object-fill">
     </div>
 
 </div>
+
 {% endblock %}
