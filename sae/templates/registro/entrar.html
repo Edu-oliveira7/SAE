@@ -22,7 +22,7 @@
                 <p class="text-sm text-gray-500 mt-1">Entre com alguma conta</p>
             </div>
 
-            <form action="#" method="POST" class="mt-6 space-y-5">
+            <form action="{% url 'entrar' %}" method="POST" class="mt-6 space-y-5">
                 {% csrf_token %}
 
                 <button type="button"
@@ -37,10 +37,10 @@
                     <hr class="flex-grow border-t border-black">
                 </div>
 
-                <input type="email" name="email" placeholder="E-mail" required
+                <input type="text" name="username" placeholder="Username" required
                     class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-                <input type="password" name="senha" placeholder="Senha" required
+                <input type="password" name="password" placeholder="Senha" required
                     class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
                 <div class="text-right">
@@ -49,7 +49,7 @@
                     </a>
                 </div>
 
-                <button type="submit"
+                <button type="submit" value="entrar"
                     class="w-full rounded-lg bg-black py-3 font-semibold text-white transition hover:bg-gray-800">
                     Entrar
                 </button>
