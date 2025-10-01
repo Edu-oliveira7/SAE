@@ -11,10 +11,12 @@
     <div class="flex w-full flex-col items-center justify-center p-6 sm:p-10 lg:p-16 bg-white">
         <div class="w-full max-w-sm">
 
-            <!-- Botões centralizados -->
+            <!-- Botões de navegação -->
             <div class="flex justify-between space-x-3">
-                <button class="rounded-md bg-black px-16 py-4 font-semibold text-white">Registro</button>
-                <button class="rounded-md border border-black px-16 py-4 font-semibold text-gray-800">Entrar</button>
+                <!-- O botão de Registro agora é um link para a própria página, mantendo o estilo ativo -->
+                <a href="{% url 'registre' %}" class="rounded-md bg-black px-16 py-4 font-semibold text-white text-center">Registro</a>
+                <!-- O botão Entrar foi trocado por um link <a> para navegar para a página de login -->
+                <a href="{% url 'entrar' %}" class="rounded-md border border-black px-16 py-4 font-semibold text-gray-800 text-center">Entrar</a>
             </div>
             
             <div class="mt-8 text-center lg:text-left">
@@ -61,9 +63,9 @@
     </div>
 
         <!-- Lado direito: Imagem -->
-    <div class="relative w-1/2"> <!-- Adicionei a margem negativa aqui -->
+    <div class="relative hidden lg:block lg:w-1/2">
         <img src="{% static 'imagens/estudos.png' %}" alt="Estude"
-             class="w-full h-full object-fill">
+             class="w-full h-full object-cover">
     </div>
 
 </div>

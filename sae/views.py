@@ -10,18 +10,19 @@ def index(request):
 def registrar(request):
     if request.method == 'GET':
         return render(request, 'registro/registre.html')
-    else:
+    else: 
         username = request.POST.get('username')
         email = request.POST.get('email')
-        password = request.POST.get('password')
+        password = request.POST.get('senha')
 
         if User.objects.filter(username=username).exists():
             return HttpResponse("Nome de usuário já existe.")
         
         user = User.objects.create_user(username=username, email=email, password=password)
 
-        # Redireciona para a página de login após o registro bem-sucedido
-        return redirect('index.html')
+        
+        return redirect('index')
+
 
 def entrar(request):
     if request.method == 'GET':

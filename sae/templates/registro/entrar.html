@@ -8,48 +8,36 @@
 <div class="flex h-screen bg-white flex-col lg:flex-row">
 
     <!-- Lado esquerdo: Formulário -->
-    <div class="flex w-full w-1/2 flex-col items-center justify-center p-6 sm:p-10 lg:p-16 bg-white">
+    <div class="flex w-full lg:w-1/2 flex-col items-center justify-center p-6 sm:p-10 lg:p-16 bg-white">
         <div class="w-full max-w-sm">
 
-            <!-- Botões centralizados -->
-            <div class="flex justify-between space-x-3">
-                <button class="rounded-md bg-black px-16 py-4 font-semibold text-white">Registro</button>
-                <button class="rounded-md border border-black px-16 py-4 font-semibold text-gray-800">Entrar</button>
+            <!-- Botões de navegação com o estado "Entrar" ativo -->
+            <div class="flex items-stretch space-x-3">
+                <a href="{% url 'registre' %}" class="flex-1 rounded-md border border-black px-4 py-4 font-semibold text-gray-800 text-center">Registro</a>
+                <a href="{% url 'entrar' %}" class="flex-1 rounded-md bg-black px-4 py-4 font-semibold text-white text-center">Entrar</a>
             </div>
             
             <div class="mt-8 text-center lg:text-left">
-                <h1 class="text-2xl font-bold text-gray-800">Nutra uma vida de estudos</h1>
-                <p class="text-sm text-gray-500 mt-1">Entre com alguma conta</p>
+                <h1 class="text-2xl font-bold text-gray-800">Bem-vindo de volta!</h1>
             </div>
 
             <form action="{% url 'entrar' %}" method="POST" class="mt-6 space-y-5">
                 {% csrf_token %}
 
-                <button type="button"
-                    class="flex w-full items-center justify-center rounded-lg border border-black px-16 py-4 hover:bg-gray-50">
-                    <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" class="mr-2 h-6 w-6">
-                    Entrar com Google
-                </button>
-
-                <div class="flex items-center">
-                    <hr class="flex-grow border-t border-black">
-                    <span class="mx-4 text-sm text-black">ou</span>
-                    <hr class="flex-grow border-t border-black">
-                </div>
-
+                <!-- Campos do formulário de login -->
                 <input type="text" name="username" placeholder="Username" required
                     class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-                <input type="password" name="password" placeholder="Senha" required
+                <input type="password" name="senha" placeholder="Senha" required
                     class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
                 <div class="text-right">
-                    <a href="#" class="text-md font-medium text-gray-800 hover:underline">
+                    <a href="#" class="text-md font-medium text-gray-600 hover:underline">
                         Esqueci a senha
                     </a>
                 </div>
 
-                <button type="submit" value="entrar"
+                <button type="submit"
                     class="w-full rounded-lg bg-black py-3 font-semibold text-white transition hover:bg-gray-800">
                     Entrar
                 </button>
@@ -57,11 +45,11 @@
         </div>
     </div>
 
-    <!-- Lado direito: Imagem com overlay e texto -->
-    <div class="relative w-1/2">
-        <img src="{% static 'imagens/estude.png' %}" alt="Estude"
-             class="w-full h-full object-fill">
+    <!-- Lado direito: Imagem -->
+    <div class="relative hidden lg:block lg:w-1/2">
+        <img src="{% static 'imagens/estudos.png' %}" alt="Estude"
+             class="w-full h-full object-cover">
     </div>
-</div>
 
+</div>
 {% endblock %}
