@@ -1,55 +1,144 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page - Nome do Projeto</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>SAE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        /* Custom animation for the carousel */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-scroll {
+            animation: scroll 25s linear infinite;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-[#DBE9F7] text-gray-900">
 
-    <!-- Cabeçalho -->
-    <header class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
-            <h1 class="text-3xl font-bold text-gray-800">Nome do Projeto</h1>
-            <nav>
-                <a href="#sobre" class="text-gray-600 hover:text-blue-500 mx-4">Sobre</a>
-                <a href="#recursos" class="text-gray-600 hover:text-blue-500 mx-4">Recursos</a>
-                <a href="#depoimentos" class="text-gray-600 hover:text-blue-500 mx-4">Depoimentos</a>
-                <a href="#contato" class="text-gray-600 hover:text-blue-500 mx-4">Contato</a>
-            </nav>
-        </div>
-    </header>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Seção Principal -->
+        <header class="text-center py-16 sm:py-24">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold max-w-4xl mx-auto leading-tight">
+                Estude como nunca antes. Uma plataforma para quem busca <span class="text-gray-900">Excelência.</span>
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl max-w-2xl mx-auto text-gray-600">
+                Seu futuro não é obra do acaso, mas das escolhas que você faz hoje. E essa decisão corajosa começa aqui. Vamos começar?
+            </p>
+            <div class="mt-8">
+                <!-- Alterado para usar a tag de URL do Django -->
+                <a href="{% url 'registre' %}" class="bg-black hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all duration-300 inline-block">
+                    Acessar
+                </a>
+            </div>
+        </header>
 
-    <!-- Seção de Apresentação -->
-    <section class="bg-blue-500 text-white py-20">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold">Transforme sua vida com nosso projeto</h2>
-            <p class="mt-4 text-lg">Descubra como podemos ajudar você a alcançar seus objetivos de forma eficaz e inovadora.</p>
-            <a href="#contato" class="mt-6 inline-block bg-white text-blue-500 font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-200">Comece Agora</a>
-        </div>
-    </section>
-
-    <!-- Seção de Recursos -->
-    <section id="recursos" class="py-12">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-gray-800 text-center">Recursos Incríveis</h2>
-            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold">Recurso 1</h3>
-                    <p class="mt-2 text-gray-600">Descrição do recurso 1 e como ele pode ajudar você.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold">Recurso 2</h3>
-                    <p class="mt-2 text-gray-600">Descrição do recurso 2 e como ele pode ajudar você.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold">Recurso 3</h3>
-                    <p class="mt-2 text-gray-600">Descrição do recurso 3 e como ele pode ajudar você.</p>
+        <!-- Seção Carrossel de Exames -->
+      <section class="py-12">
+            <h2 class="text-center text-2xl font-bold mb-8" style="font-weight: 700;">Estude para os principais exames do país!</h2>
+            <div class="relative w-full overflow-hidden py-4 rounded-lg">
+                <div class="flex">
+                    <!-- Logos duplicados para criar o efeito de loop infinito -->
+                    <div class="flex w-max items-center animate-scroll flex-shrink-0">
+                        <img src="{% static 'imagens/image 13.png' %}" alt="Logo ENEM" class="h-10 sm:h-12 mx-8 object-contain">
+                        <img src="{% static 'imagens/ifrn.png' %}" alt="Logo IF" class="h-12 sm:h-14 mx-8 object-contain">
+                        <img src="{% static 'imagens/image 15.png' %}" alt="Logo INSS" class="h-10 sm:h-12 mx-8 object-contain">
+                        <img src="{% static 'imagens/image 14.png' %}" alt="Logo ESA" class="h-12 sm:h-14 mx-8 object-contain">
+                        <img src="{% static 'imagens/image 16.png' %}" alt="Logo EsPCEx" class="h-12 sm:h-14 mx-8 object-contain">
+                        <img src="{% static 'imagens/image 17.png' %}" alt="Logo CNU" class="h-12 sm:h-14 mx-8 object-contain">
+                    </div>
+                    
+                    <div class="flex w-max items-center animate-scroll flex-shrink-0" aria-hidden="true">
+                        <img src="{% static 'imagens/image 13.png' %}" alt="Logo ENEM" class="h-10 sm:h-12 mx-8 object-contain">
+                        <img src="{% static 'imagens/ifrn.png' %}" alt="Logo IF" class="h-12 sm:h-14 mx-8 object-contain">
+                        <img src="{% static 'imagens/image 15.png' %}" alt="Logo INSS" class="h-10 sm:h-12 mx-8 object-contain">
+                        <img src="{% static 'imagens/image 14.png' %}" alt="Logo ESA" class="h-12 sm:h-14 mx-8 object-contain">
+                        <img src="{% static 'imagens/image 16.png' %}" alt="Logo EsPCEx" class="h-12 sm:h-14 mx-8 object-contain">
+                        <img src="{% static 'imagens/image 17.png' %}" alt="Logo CNU" class="h-12 sm:h-14 mx-8 object-contain">
+                    </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Seção Descubra -->
+        <section class="py-16 sm:py-24 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-12">Descubra como o SAE pode transformar seu aprendizado!</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Cards de features -->
+                <div class="bg-white rounded-lg p-6 flex flex-col items-center shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div class="bg-slate-100 p-3 rounded-full mb-4">
+                        <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Plano de Estudo Personalizado</h3>
+                </div>
+                <div class="bg-white rounded-lg p-6 flex flex-col items-center shadow-sm hover:shadow-lg transition-shadow duration-300">
+                     <div class="bg-slate-100 p-3 rounded-full mb-4">
+                        <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Preparação Específica por Matéria</h3>
+                </div>
+                <div class="bg-white rounded-lg p-6 flex flex-col items-center shadow-sm hover:shadow-lg transition-shadow duration-300">
+                     <div class="bg-slate-100 p-3 rounded-full mb-4">
+                        <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Acompanhamento de Progresso</h3>
+                </div>
+                <div class="bg-white rounded-lg p-6 flex flex-col items-center shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div class="bg-slate-100 p-3 rounded-full mb-4">
+                       <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V7a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold mb-2">Dashboard de Desempenho</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seções de Detalhes -->
+        <div class="space-y-20 sm:space-y-32 py-16">
+            <section class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="{% static 'imagens/Rectangle 172.png' %}" alt="Ilustração de um estudante em uma mesa com livros" class="rounded-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4">Perfil Personalizado do Aluno</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        O SAE permite registrar e analisar as informações do aluno, incluindo suas preferências, área de interesse, nível de conhecimento, objetivos e pontos de dificuldade. O sistema cria uma proposta curricular e jornada individual.
+                    </p>
+                </div>
+            </section>
+            <section class="flex flex-col md:flex-row-reverse items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="{% static 'imagens/Rectangle 173.png' %}" alt="Ilustração de uma pessoa interagindo com um chatbot em um laptop" class="rounded-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4">Interação com Questões via Chat</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Oferece um banco de questões organizado por tópicos, dificuldades e formatos, com navegação intuitiva. Permite simulados, desafios e facilita a identificação de pontos fracos e desenvolve planos baseados no histórico do aluno.
+                    </p>
+                </div>
+            </section>
+            <section class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="{% static 'imagens/Rectangle 174.png' %}" alt="Ilustração de duas pessoas analisando uma prancheta com gráficos" class="rounded-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4">Feedback Imediato e Análise de Desempenho</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Fornece correções detalhadas após as respostas, relatórios com taxas de acertos, gráficos interativos e sugestões de materiais complementares para reforçar e corrigir lacunas no aprendizado.
+                    </p>
+                </div>
+            </section>
         </div>
-    </section>
+    </div>
 
 </body>
 </html>
+
