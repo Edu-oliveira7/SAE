@@ -1,0 +1,167 @@
+{% extends 'registro/base.html' %}
+{% load static %}
+
+{% block title %}Plataforma IA{% endblock %}
+
+{% block content %}
+<div class="flex h-screen bg-gray-900 text-white font-sans">
+    
+    <aside class="w-64 bg-gray-800 p-4 flex flex-col justify-between">
+        <div>
+            <button id="new-convo-btn" class="w-full flex items-center justify-center border border-gray-600 rounded-lg p-3 text-lg hover:bg-gray-700 transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                Nova Conversa
+            </button>
+            <nav id="sidebar-nav" class="mt-8 space-y-2">
+                <!-- Histórico de conversas será renderizado aqui pelo JavaScript -->
+            </nav>
+        </div>
+        
+        <!-- Seção do Usuário -->
+        <div class="border-t border-gray-700 pt-4">
+            <div class="flex items-center p-2 rounded-lg hover:bg-gray-700 cursor-pointer">
+                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center font-bold mr-3">
+                    <!-- Pega a primeira letra do username -->
+                    {{ request.user.username|first|upper }}
+                </div>
+                <span>{{ request.user.username }}</span>
+            </div>
+            
+            <button id="open-logout-modal-btn" class="w-full flex items-center mt-2 p-2 rounded-lg text-red-400 hover:bg-red-900 hover:text-white transition-colors">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                Sair
+            </button>
+        </div>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <main id="main-content" class="flex-1 p-6 flex flex-col">
+        <!-- O conteúdo da conversa será renderizado aqui pelo JavaScript -->
+    </main>
+</div>
+
+<div id="logout-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+    <div class="bg-gray-800 rounded-lg shadow-xl p-8 max-w-sm w-full">
+        <h2 class="text-2xl font-bold text-white mb-4">Confirmação</h2>
+        <p class="text-gray-300 mb-6">Tem certeza que deseja sair?</p>
+        <div class="flex justify-end space-x-4">
+            <button id="cancel-logout-btn" class="px-6 py-2 rounded-lg text-white bg-gray-600 hover:bg-gray-500 transition-colors">
+                Não
+            </button>
+            <a href="{% url 'sair' %}" class="px-6 py-2 rounded-lg text-white bg-red-600 hover:bg-red-500 transition-colors">
+                Sim, Sair
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- LÓGICA DO CHAT INTERATIVO ---
+        const mainContent = document.getElementById('main-content');
+        const sidebarNav = document.getElementById('sidebar-nav');
+        const newConvoBtn = document.getElementById('new-convo-btn');
+
+        let conversations = [
+            {
+                id: 1,
+                title: "Como usar o Django",
+                contentHTML: `
+                    <div class="flex-1">
+                        <h1 class="text-3xl font-bold">Como usar o Django</h1>
+                        <p class="text-gray-400 mt-4">Django é um framework de alto nível para desenvolvimento web em Python que encoraja o desenvolvimento rápido e o design limpo e pragmático.</p>
+                        <!-- Mais conteúdo aqui -->
+                    </div>
+                    <div class="mt-auto">
+                        <div class="relative">
+                            <input type="text" placeholder="Faça uma pergunta sobre Django..." class="w-full bg-gray-700 border-gray-600 rounded-lg py-3 pl-4 pr-12 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <button class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-400 hover:text-white">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+        let activeConversationId = 1;
+
+        const renderSidebar = () => {
+            sidebarNav.innerHTML = '<span class="text-xs text-gray-400 font-semibold uppercase px-3">Histórico</span>';
+            conversations.forEach(convo => {
+                const isActive = convo.id === activeConversationId;
+                const activeClasses = 'bg-gray-700 text-white';
+                const defaultClasses = 'text-gray-300 hover:bg-gray-700';
+                const link = document.createElement('a');
+                link.href = '#';
+                link.className = `flex items-center px-3 py-2 rounded-lg transition-colors ${isActive ? activeClasses : defaultClasses}`;
+                link.textContent = convo.title;
+                link.dataset.id = convo.id;
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    activeConversationId = convo.id;
+                    render();
+                });
+                sidebarNav.appendChild(link);
+            });
+        };
+
+        const renderMainContent = () => {
+            const activeConvo = conversations.find(c => c.id === activeConversationId);
+            mainContent.innerHTML = activeConvo ? activeConvo.contentHTML : `
+                <div class="flex-1 flex items-center justify-center">
+                    <p class="text-gray-500">Selecione uma conversa ou inicie uma nova.</p>
+                </div>`;
+        };
+        
+        const render = () => {
+            renderSidebar();
+            renderMainContent();
+        };
+
+        newConvoBtn.addEventListener('click', () => {
+            const title = prompt("Qual o tópico da nova conversa?");
+            if (title) {
+                const newId = conversations.length > 0 ? Math.max(...conversations.map(c => c.id)) + 1 : 1;
+                const newConversation = {
+                    id: newId,
+                    title: title,
+                    contentHTML: `
+                        <div class="flex-1">
+                            <h1 class="text-3xl font-bold">${title}</h1>
+                            <p class="text-gray-400 mt-4">Comece a explorar este novo tópico.</p>
+                        </div>
+                        <div class="mt-auto">
+                            <div class="relative">
+                                <input type="text" placeholder="Pergunte algo sobre ${title}..." class="w-full bg-gray-700 border-gray-600 rounded-lg py-3 pl-4 pr-12 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <button class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-400 hover:text-white">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    `
+                };
+                conversations.push(newConversation);
+                activeConversationId = newId;
+                render();
+            }
+        });
+
+        // --- LÓGICA DO MODAL DE LOGOUT ---
+        const logoutModal = document.getElementById('logout-modal');
+        const openModalBtn = document.getElementById('open-logout-modal-btn');
+        const closeModalBtn = document.getElementById('cancel-logout-btn');
+
+        openModalBtn.addEventListener('click', () => logoutModal.classList.remove('hidden'));
+        closeModalBtn.addEventListener('click', () => logoutModal.classList.add('hidden'));
+        logoutModal.addEventListener('click', (e) => {
+            if (e.target === logoutModal) {
+                logoutModal.classList.add('hidden');
+            }
+        });
+        
+        // Renderização inicial
+        render();
+    });
+</script>
+{% endblock %}
+

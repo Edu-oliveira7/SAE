@@ -12,7 +12,6 @@
         <div class="flex w-full lg:w-1/2 flex-col items-center justify-center p-8 sm:p-12">
             <div class="w-full max-w-sm">
 
-                <!-- Botões de navegação com o estado "Entrar" ativo -->
                 <div class="flex items-stretch space-x-3">
                     <a href="{% url 'registre' %}" class="flex-1 rounded-md border border-black px-4 py-4 font-semibold text-gray-800 text-center">Registro</a>
                     <a href="{% url 'entrar' %}" class="flex-1 rounded-md bg-black px-4 py-4 font-semibold text-white text-center">Entrar</a>
@@ -24,30 +23,35 @@
                         Mas se você não fizer nada, não existirão.</p>
                 </div>
 
+                <!-- Bloco para exibir mensagens de erro -->
+                {% if messages %}
+                    <div class="mt-4">
+                        {% for message in messages %}
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <span class="block sm:inline">{{ message }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <!-- Fim do Bloco de Mensagens -->
+
                 <form action="{% url 'entrar' %}" method="POST" class="mt-6 space-y-5">
                     {% csrf_token %}
-
-                    <input type="text" name="username" placeholder="E-mail" required
-                        class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
-
+                    <input type="text" name="username" placeholder="Username ou E-mail" required
+                           class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <input type="password" name="senha" placeholder="Senha" required
-                        class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
-
+                           class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <div class="text-right">
                         <a href="#" class="text-md font-medium text-gray-600 hover:underline">
                             Esqueci a senha
                         </a>
                     </div>
-
-                    <!-- Container para os dois botões inferiores -->
                     <div class="flex items-stretch space-x-4 pt-4">
-                        <!-- Botão Voltar (é um link para a página inicial) -->
                         <a href="{% url 'index' %}" class="flex-1 rounded-lg border border-black py-3 text-center font-semibold text-gray-800 transition hover:bg-gray-100">
                             Voltar
                         </a>
-                        <!-- Botão Entrar (envia o formulário) -->
                         <button type="submit"
-                            class="flex-1 rounded-lg bg-black py-3 font-semibold text-white transition hover:bg-gray-800">
+                                class="flex-1 rounded-lg bg-black py-3 font-semibold text-white transition hover:bg-gray-800">
                             Entrar
                         </button>
                     </div>
@@ -64,4 +68,3 @@
     </div>
 </div>
 {% endblock %}
-
