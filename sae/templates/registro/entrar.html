@@ -5,51 +5,63 @@
 {% block title %}Entrar{% endblock %}
 
 {% block content %}
-<div class="flex h-screen bg-white flex-col lg:flex-row">
+<div class="min-h-screen flex items-center justify-center p-4">
+    <div class="flex w-full max-w-5xl rounded-2xl ">
 
-    <!-- Lado esquerdo: Formulário -->
-    <div class="flex w-full lg:w-1/2 flex-col items-center justify-center p-6 sm:p-10 lg:p-16 bg-white">
-        <div class="w-full max-w-sm">
+        <!-- Lado esquerdo: Formulário -->
+        <div class="flex w-full lg:w-1/2 flex-col items-center justify-center p-8 sm:p-12">
+            <div class="w-full max-w-sm">
 
-            <!-- Botões de navegação com o estado "Entrar" ativo -->
-            <div class="flex items-stretch space-x-3">
-                <a href="{% url 'registre' %}" class="flex-1 rounded-md border border-black px-4 py-4 font-semibold text-gray-800 text-center">Registro</a>
-                <a href="{% url 'entrar' %}" class="flex-1 rounded-md bg-black px-4 py-4 font-semibold text-white text-center">Entrar</a>
-            </div>
-            
-            <div class="mt-8 text-center lg:text-left">
-                <h1 class="text-2xl font-bold text-gray-800">Bem-vindo de volta!</h1>
-            </div>
-
-            <form action="{% url 'entrar' %}" method="POST" class="mt-6 space-y-5">
-                {% csrf_token %}
-
-                <!-- Campos do formulário de login -->
-                <input type="text" name="username" placeholder="Username" required
-                    class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
-
-                <input type="password" name="senha" placeholder="Senha" required
-                    class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
-
-                <div class="text-right">
-                    <a href="#" class="text-md font-medium text-gray-600 hover:underline">
-                        Esqueci a senha
-                    </a>
+                <!-- Botões de navegação com o estado "Entrar" ativo -->
+                <div class="flex items-stretch space-x-3">
+                    <a href="{% url 'registre' %}" class="flex-1 rounded-md border border-black px-4 py-4 font-semibold text-gray-800 text-center">Registro</a>
+                    <a href="{% url 'entrar' %}" class="flex-1 rounded-md bg-black px-4 py-4 font-semibold text-white text-center">Entrar</a>
+                </div>
+                
+                <div class="mt-8 text-center lg:text-left">
+                    <h1 class="text-2xl font-bold text-gray-800">Bem-Vindo de Volta!</h1>
+                    <p class="text-gray-500 mt-2">Você nunca sabe que resultados virão da sua ação. 
+                        Mas se você não fizer nada, não existirão.</p>
                 </div>
 
-                <button type="submit"
-                    class="w-full rounded-lg bg-black py-3 font-semibold text-white transition hover:bg-gray-800">
-                    Entrar
-                </button>
-            </form>
+                <form action="{% url 'entrar' %}" method="POST" class="mt-6 space-y-5">
+                    {% csrf_token %}
+
+                    <input type="text" name="username" placeholder="E-mail" required
+                        class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                    <input type="password" name="senha" placeholder="Senha" required
+                        class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                    <div class="text-right">
+                        <a href="#" class="text-md font-medium text-gray-600 hover:underline">
+                            Esqueci a senha
+                        </a>
+                    </div>
+
+                    <!-- Container para os dois botões inferiores -->
+                    <div class="flex items-stretch space-x-4 pt-4">
+                        <!-- Botão Voltar (é um link para a página inicial) -->
+                        <a href="{% url 'index' %}" class="flex-1 rounded-lg border border-black py-3 text-center font-semibold text-gray-800 transition hover:bg-gray-100">
+                            Voltar
+                        </a>
+                        <!-- Botão Entrar (envia o formulário) -->
+                        <button type="submit"
+                            class="flex-1 rounded-lg bg-black py-3 font-semibold text-white transition hover:bg-gray-800">
+                            Entrar
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <!-- Lado direito: Imagem -->
-    <div class="relative hidden lg:block lg:w-1/2">
-        <img src="{% static 'imagens/estudos.png' %}" alt="Estude"
-             class="w-full h-full object-cover">
-    </div>
+        <!-- Lado direito: Imagem -->
+        <div class="relative hidden lg:block lg:w-1/2 p-4">
+            <img src="{% static 'imagens/estude.png' %}" alt="Mulher estudando ao ar livre"
+                 class="w-full h-full object-cover rounded-2xl">
+        </div>
 
+    </div>
 </div>
 {% endblock %}
+

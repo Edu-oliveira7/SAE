@@ -5,69 +5,75 @@
 {% block title %}Registre-se{% endblock %}
 
 {% block content %}
-<div class="flex h-screen bg-white flex-col lg:flex-row">
+<div class="min-h-screen flex items-center justify-center p-4">
+    <div class="flex w-full max-w-5xl rounded-2xl ">
 
-    <!-- Lado esquerdo: Formulário -->
-    <div class="flex w-full flex-col items-center justify-center p-6 sm:p-10 lg:p-16 bg-white">
-        <div class="w-full max-w-sm">
+        <!-- Lado esquerdo: Formulário -->
+        <div class="flex w-full lg:w-1/2 flex-col items-center justify-center p-8 sm:p-12">
+            <div class="w-full max-w-sm">
 
-            <!-- Botões de navegação -->
-            <div class="flex justify-between space-x-3">
-                <!-- O botão de Registro agora é um link para a própria página, mantendo o estilo ativo -->
-                <a href="{% url 'registre' %}" class="rounded-md bg-black px-16 py-4 font-semibold text-white text-center">Registro</a>
-                <!-- O botão Entrar foi trocado por um link <a> para navegar para a página de login -->
-                <a href="{% url 'entrar' %}" class="rounded-md border border-black px-16 py-4 font-semibold text-gray-800 text-center">Entrar</a>
-            </div>
-            
-            <div class="mt-8 text-center lg:text-left">
-                <h1 class="text-2xl font-bold text-gray-800">Aprenda mais, aprenda melhor</h1>
-            </div>
-
-            <form action="{% url 'registre' %}" method="POST" class="mt-6 space-y-5">
-                {% csrf_token %}
-
-                <button type="button"
-                    class="flex w-full items-center justify-center rounded-lg border border-black px-16 py-4 hover:bg-gray-50">
-                    <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" class="mr-2 h-6 w-6">
-                    Registrar-se com Google
-                </button>
-
-                <div class="flex items-center">
-                    <hr class="flex-grow border-t border-black">
-                    <span class="mx-4 text-sm text-black">ou</span>
-                    <hr class="flex-grow border-t border-black">
+                <!-- Botões de navegação com o estado "Registro" ativo -->
+                <div class="flex items-stretch space-x-3">
+                    <a href="{% url 'registre' %}" class="flex-1 rounded-md bg-black px-4 py-4 font-semibold text-white text-center">Registro</a>
+                    <a href="{% url 'entrar' %}" class="flex-1 rounded-md border border-black px-4 py-4 font-semibold text-gray-800 text-center">Entrar</a>
+                </div>
+                
+                <div class="mt-8 text-center lg:text-left">
+                    <h1 class="text-2xl font-bold text-gray-800">Aprenda mais, aprenda melhor</h1>
                 </div>
 
-                <input type="text" name="username" placeholder="Username" required
-                    class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <form action="{% url 'registre' %}" method="POST" class="mt-6 space-y-5">
+                    {% csrf_token %}
 
+                    <button type="button"
+                        class="flex w-full items-center justify-center rounded-lg border border-black py-3 hover:bg-gray-50 font-semibold text-gray-800">
+                        <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" class="mr-2 h-6 w-6">
+                        Registrar-se com Google
+                    </button>
 
-                <input type="email" name="email" placeholder="E-mail" required
-                    class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <div class="flex items-center">
+                        <hr class="flex-grow border-t border-black">
+                        <span class="mx-4 text-sm text-black">ou</span>
+                        <hr class="flex-grow border-t border-black">
+                    </div>
 
-                <input type="password" name="senha" placeholder="Senha" required
-                    class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" name="username" placeholder="Username" required
+                        class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-                <div class="text-right">
-                    <a href="#" class="text-md font-medium text-gray-600 hover:underline">
-                        Esqueci a senha
-                    </a>
-                </div>
+                    <input type="email" name="email" placeholder="E-mail" required
+                        class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-                <button type="submit"
-                    class="w-full rounded-lg bg-black py-3 font-semibold text-white transition hover:bg-gray-800">
-                    Registrar-se
-                </button>
-            </form>
+                    <input type="password" name="senha" placeholder="Senha" required
+                        class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                    <div class="text-right">
+                        <a href="#" class="text-md font-medium text-gray-600 hover:underline">
+                            Esqueci a senha
+                        </a>
+                    </div>
+
+                    <!-- Container para os dois botões inferiores -->
+                    <div class="flex items-stretch space-x-4 pt-4">
+                        <!-- Botão Voltar (é um link para a página inicial) -->
+                        <a href="{% url 'index' %}" class="flex-1 rounded-lg border border-black py-3 text-center font-semibold text-gray-800 transition hover:bg-gray-100">
+                            Voltar
+                        </a>
+                        <!-- Botão Registrar-se (envia o formulário) -->
+                        <button type="submit"
+                            class="flex-1 rounded-lg bg-black py-3 font-semibold text-white transition hover:bg-gray-800">
+                            Registrar-se
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
         <!-- Lado direito: Imagem -->
-    <div class="relative hidden lg:block lg:w-1/2">
-        <img src="{% static 'imagens/estudos.png' %}" alt="Estude"
-             class="w-full h-full object-cover">
+        <div class="relative hidden lg:block lg:w-1/2 p-4">
+            <img src="{% static 'imagens/estudos.png' %}" alt="Estude"
+                 class="w-full h-full object-cover rounded-2xl">
+        </div>
+
     </div>
-
 </div>
-
 {% endblock %}
