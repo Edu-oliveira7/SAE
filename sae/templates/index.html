@@ -5,11 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAE</title>
+    <title>SAE - Sistema de Aprendizado Eficiente</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family+Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family+Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: 'Source Sans Pro', sans-serif;
@@ -31,7 +32,6 @@
             animation: scroll 25s linear infinite;
         }
 
-
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
@@ -43,7 +43,6 @@
             transform: translateY(0);
         }
 
-
         .headline-fade-in {
             opacity: 0;
             transform: translateY(10px);
@@ -51,12 +50,10 @@
             animation-delay: 0.5s;
         }
 
-
         .subtitle-fade-in {
             opacity: 0;
             transform: translateY(10px);
             animation: fadeInTranslateY 1s ease-out forwards;
-
             animation-delay: 1.5s;
         }
 
@@ -66,13 +63,71 @@
                 transform: translateY(0);
             }
         }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #FFFAEF 0%, #FFF5E0 100%);
+        }
+        
+        .nav-shadow {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover .feature-icon {
+            transform: scale(1.1);
+        }
+        
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 
-<body class="bg-[#FFFAEF] text-gray-900">
+<body class="gradient-bg text-gray-900">
+
+    <!-- Navegação -->
+    <nav class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 nav-shadow">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-black rounded-full"></div>
+                    <span class="font-bold text-xl">SAE</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#recursos" class="font-medium hover:text-gray-700 transition-colors">Recursos</a>
+                    <a href="#como-funciona" class="font-medium hover:text-gray-700 transition-colors">Como Funciona</a>
+                    <a href="#vantagens" class="font-medium hover:text-gray-700 transition-colors">Vantagens</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="{% url 'entrar' %}" class="font-medium hover:text-gray-700 transition-colors hidden md:block">Entrar</a>
+                    <a href="{% url 'registre' %}" class="bg-black hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-lg shadow-sm transition-all duration-300">
+                        Começar Agora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
+        <!-- Hero Section -->
         <header class="text-center py-16 sm:py-24">
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold max-w-4xl mx-auto leading-tight headline-fade-in">
                 Estude como nunca antes. Uma plataforma para quem busca <span class="text-gray-900">Excelência.</span>
@@ -82,14 +137,21 @@
                 Seu futuro não é obra do acaso, mas das escolhas que você faz hoje. E essa decisão corajosa começa aqui.
                 Vamos começar?
             </p>
-            <div class="mt-8 headline-fade-in" style="animation-delay: 1.1s;">
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4 headline-fade-in" style="animation-delay: 1.1s;">
                 <a href="{% url 'registre' %}"
-                    class="bg-black hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all duration-300 inline-block">
-                    Acessar
+                    class="bg-black hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all duration-300 inline-block text-center">
+                    Começar Agora
+                </a>
+                <a href="#recursos"
+                    class="border border-black hover:bg-black hover:text-white text-black font-semibold py-3 px-8 rounded-lg transition-all duration-300 inline-block text-center">
+                    Conhecer Mais
                 </a>
             </div>
+            
+           
         </header>
 
+        <!-- Logos Section -->
         <section class="py-12">
             <h2 class="text-center text-2xl font-bold mb-8 subtitle-fade-in" style="font-weight: 700;">Estude para os
                 principais exames do país!</h2>
@@ -132,12 +194,17 @@
             </div>
         </section>
 
-        <section class="py-16 sm:py-24 text-center fade-in-section">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-12">Descubra como o SAE pode transformar seu aprendizado!</h2>
+        <!-- Recursos Section -->
+        <section id="recursos" class="py-16 sm:py-24 text-center fade-in-section">
+            <div class="max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Descubra como o SAE pode transformar seu aprendizado!</h2>
+                <p class="text-gray-600 text-lg">Uma plataforma completa com tudo que você precisa para alcançar seus objetivos</p>
+            </div>
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div
-                    class="bg-white rounded-lg p-6 flex flex-col items-center shadow-sm hover:shadow-lg transition-shadow duration-300">
-                    <div class="bg-slate-100 p-3 rounded-full mb-4">
+                    class="bg-white rounded-xl p-6 flex flex-col items-center shadow-sm hover:shadow-xl transition-all duration-300 card-hover">
+                    <div class="bg-slate-100 p-4 rounded-full mb-4 feature-icon">
                         <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -145,11 +212,12 @@
                             </path>
                         </svg>
                     </div>
-                    <h3 class="font-semibold mb-2">Plano de Estudo Personalizado</h3>
+                    <h3 class="font-bold text-lg mb-3">Plano de Estudo Personalizado</h3>
+                    <p class="text-gray-600 text-sm">Criamos um plano de estudos adaptado ao seu nível, objetivos e disponibilidade de tempo.</p>
                 </div>
                 <div
-                    class="bg-white rounded-lg p-6 flex flex-col items-center shadow-sm hover:shadow-lg transition-shadow duration-300">
-                    <div class="bg-slate-100 p-3 rounded-full mb-4">
+                    class="bg-white rounded-xl p-6 flex flex-col items-center shadow-sm hover:shadow-xl transition-all duration-300 card-hover">
+                    <div class="bg-slate-100 p-4 rounded-full mb-4 feature-icon">
                         <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -157,22 +225,24 @@
                             </path>
                         </svg>
                     </div>
-                    <h3 class="font-semibold mb-2">Preparação Específica por Matéria</h3>
+                    <h3 class="font-bold text-lg mb-3">Preparação Específica</h3>
+                    <p class="text-gray-600 text-sm">Conteúdo direcionado para cada matéria e exame, com foco nos tópicos mais relevantes.</p>
                 </div>
                 <div
-                    class="bg-white rounded-lg p-6 flex flex-col items-center shadow-sm hover:shadow-lg transition-shadow duration-300">
-                    <div class="bg-slate-100 p-3 rounded-full mb-4">
+                    class="bg-white rounded-xl p-6 flex flex-col items-center shadow-sm hover:shadow-xl transition-all duration-300 card-hover">
+                    <div class="bg-slate-100 p-4 rounded-full mb-4 feature-icon">
                         <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                         </svg>
                     </div>
-                    <h3 class="font-semibold mb-2">Acompanhamento de Progresso</h3>
+                    <h3 class="font-bold text-lg mb-3">Acompanhamento de Progresso</h3>
+                    <p class="text-gray-600 text-sm">Monitore sua evolução com métricas detalhadas e relatórios de desempenho.</p>
                 </div>
                 <div
-                    class="bg-white rounded-lg p-6 flex flex-col items-center shadow-sm hover:shadow-lg transition-shadow duration-300">
-                    <div class="bg-slate-100 p-3 rounded-full mb-4">
+                    class="bg-white rounded-xl p-6 flex flex-col items-center shadow-sm hover:shadow-xl transition-all duration-300 card-hover">
+                    <div class="bg-slate-100 p-4 rounded-full mb-4 feature-icon">
                         <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -180,49 +250,149 @@
                             </path>
                         </svg>
                     </div>
-                    <h3 class="font-semibold mb-2">Dashboard de Desempenho</h3>
+                    <h3 class="font-bold text-lg mb-3">Dashboard de Desempenho</h3>
+                    <p class="text-gray-600 text-sm">Visualize seus resultados em gráficos interativos e identifique pontos de melhoria.</p>
                 </div>
             </div>
         </section>
 
-       <div class="space-y-20 sm:space-y-32 py-16">
+        <!-- Como Funciona Section -->
+        <div id="como-funciona" class="space-y-20 sm:space-y-32 py-16">
             <section class="flex flex-col md:flex-row items-center gap-12 fade-in-section">
                 <div class="md:w-1/2">
-                    <img src="{% static 'imagens/Rectangle 172.png' %}" alt="Ilustração de um estudante em uma mesa com livros" class="rounded-lg w-5/6 mx-auto">
+                    <img src="{% static 'imagens/Rectangle 172.png' %}" alt="Ilustração de um estudante em uma mesa com livros" class="rounded-xl w-5/6 mx-auto shadow-lg">
                 </div>
                 <div class="md:w-1/2">
                     <h3 class="text-2xl sm:text-3xl font-bold mb-4">Perfil Personalizado do Aluno</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class="text-gray-600 leading-relaxed mb-6">
                         O SAE permite registrar e analisar as informações do aluno, incluindo suas preferências, área de interesse, nível de conhecimento, objetivos e pontos de dificuldade. O sistema cria uma proposta curricular e jornada individual.
                     </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>Análise detalhada do seu perfil de aprendizagem</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>Identificação de pontos fortes e áreas de melhoria</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>Plano de estudos adaptado ao seu ritmo</span>
+                        </li>
+                    </ul>
                 </div>
             </section>
             
             <section class="flex flex-col md:flex-row-reverse items-center gap-12 fade-in-section">
                 <div class="md:w-1/2">
-                    <img src="{% static 'imagens/Rectangle 173.png' %}" alt="Ilustração de uma pessoa interagindo com um chatbot em um laptop" class="rounded-lg w-5/6 mx-auto">
+                    <img src="{% static 'imagens/Rectangle 173.png' %}" alt="Ilustração de uma pessoa interagindo com um chatbot em um laptop" class="rounded-xl w-5/6 mx-auto shadow-lg">
                 </div>
                 <div class="md:w-1/2">
                     <h3 class="text-2xl sm:text-3xl font-bold mb-4">Interação com Questões via Chat</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class="text-gray-600 leading-relaxed mb-6">
                         Oferece um banco de questões organizado por tópicos, dificuldades e formatos, com navegação intuitiva. Permite simulados, desafios e facilita a identificação de pontos fracos e desenvolve planos baseados no histórico do aluno.
                     </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>Banco com milhares de questões de diferentes exames</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>Interface de chat para uma experiência mais natural</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>Simulados cronometrados para treino realista</span>
+                        </li>
+                    </ul>
                 </div>
             </section>
 
             <section class="flex flex-col md:flex-row items-center gap-12 fade-in-section">
                 <div class="md:w-1/2">
-                    <img src="{% static 'imagens/Rectangle 174.png' %}" alt="Ilustração de duas pessoas analisando uma prancheta com gráficos" class="rounded-lg w-5/6 mx-auto">
+                    <img src="{% static 'imagens/Rectangle 174.png' %}" alt="Ilustração de duas pessoas analisando uma prancheta com gráficos" class="rounded-xl w-5/6 mx-auto shadow-lg">
                 </div>
                 <div class="md:w-1/2">
                     <h3 class="text-2xl sm:text-3xl font-bold mb-4">Feedback Imediato e Análise de Desempenho</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class="text-gray-600 leading-relaxed mb-6">
                         Fornece correções detalhadas após as respostas, relatórios com taxas de acertos, gráficos interativos e sugestões de materiais complementares para reforçar e corrigir lacunas no aprendizado.
                     </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>Correções detalhadas com explicações passo a passo</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>Gráficos interativos para acompanhar sua evolução</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>Sugestões personalizadas de materiais de estudo</span>
+                        </li>
+                    </ul>
                 </div>
             </section>
         </div>
+
+        <!-- Vantagens Section -->
+        <section id="vantagens" class="py-16 sm:py-24 fade-in-section">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Por que escolher o SAE?</h2>
+                <p class="text-gray-600 text-lg">Uma abordagem moderna para otimizar seus estudos</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 shadow-sm stat-card">
+                    <div class="text-center mb-4">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full">
+                            <i class="fas fa-bolt text-blue-600 text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl text-center mb-2">Economia de Tempo</h3>
+                    <p class="text-gray-600 text-center">Foque no que realmente importa com planos de estudo otimizados que eliminam a necessidade de pesquisas extensas.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm stat-card">
+                    <div class="text-center mb-4">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full">
+                            <i class="fas fa-chart-line text-green-600 text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl text-center mb-2">Aprendizado Adaptativo</h3>
+                    <p class="text-gray-600 text-center">O sistema se ajusta ao seu ritmo, reforçando conteúdos onde você mais precisa e acelerando onde tem facilidade.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm stat-card">
+                    <div class="text-center mb-4">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-orange-100 rounded-full">
+                            <i class="fas fa-lightbulb text-orange-600 text-2xl"></i>
+                         </div>
+                    </div>
+                    <h3 class="font-bold text-xl text-center mb-2">Foco nos Seus Objetivos</h3>
+                    <p class="text-gray-600 text-center">Conteúdo direcionado especificamente para o exame que você quer passar, maximizando sua eficiência de estudo.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 text-center">
+                <h3 class="text-2xl font-bold mb-4">Junte-se à nossa comunidade de aprendizado</h3>
+                <p class="text-gray-700 max-w-2xl mx-auto mb-6">Estamos construindo uma plataforma que realmente entende as necessidades dos estudantes. Sua participação nos estágios iniciais ajudará a moldar o futuro do SAE.</p>
+                <a href="{% url 'registre' %}" class="bg-black hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all duration-300 inline-block">
+                    Fazer Parte Agora
+                </a>
+            </div>
+        </section>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10">
+            <div class=" mt-2 pt-4 text-center text-gray-400">
+                <p>&copy; 2025 SAE. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         const observer = new IntersectionObserver((entries) => {
@@ -240,6 +410,24 @@
 
         sectionsToAnimate.forEach(section => {
             observer.observe(section);
+        });
+        
+        // Smooth scrolling para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
