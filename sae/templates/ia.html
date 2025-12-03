@@ -5,18 +5,23 @@
 
 {% block content %}
 <div class="flex h-screen bg-gray-900 text-white font-sans">
-    
+
     <aside class="w-64 bg-gray-800 p-4 flex flex-col justify-between">
         <div>
-            <button id="new-convo-btn" class="w-full flex items-center justify-center border border-gray-600 rounded-lg p-3 text-lg hover:bg-gray-700 transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+            <button id="new-convo-btn"
+                class="w-full flex items-center justify-center border border-gray-600 rounded-lg p-3 text-lg hover:bg-gray-700 transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
                 Nova Conversa
             </button>
             <nav id="sidebar-nav" class="mt-8 space-y-2">
                 <!-- Histórico de conversas será renderizado aqui pelo JavaScript -->
             </nav>
         </div>
-        
+
         <!-- Seção do Usuário -->
         <div class="border-t border-gray-700 pt-4">
             <div class="flex items-center p-2 rounded-lg hover:bg-gray-700 cursor-pointer">
@@ -25,10 +30,16 @@
                     {{ request.user.username|first|upper }}
                 </div>
                 <span>{{ request.user.username }}</span>
-            </div>
-            
-            <button id="open-logout-modal-btn" class="w-full flex items-center mt-2 p-2 rounded-lg text-red-400 hover:bg-red-900 hover:text-white transition-colors">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+            </div>O Q 1 EI90 U
+
+            <button id="open-logout-modal-btn"
+                class="w-full flex items-center mt-2 p-2 rounded-lg text-red-400 hover:bg-red-900 hover:text-white transition-colors">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                    </path>
+                </svg>
                 Sair
             </button>
         </div>
@@ -45,10 +56,12 @@
         <h2 class="text-2xl font-bold text-white mb-4">Confirmação</h2>
         <p class="text-gray-300 mb-6">Tem certeza que deseja sair?</p>
         <div class="flex justify-end space-x-4">
-            <button id="cancel-logout-btn" class="px-6 py-2 rounded-lg text-white bg-gray-600 hover:bg-gray-500 transition-colors">
+            <button id="cancel-logout-btn"
+                class="px-6 py-2 rounded-lg text-white bg-gray-600 hover:bg-gray-500 transition-colors">
                 Não
             </button>
-            <a href="{% url 'sair' %}" class="px-6 py-2 rounded-lg text-white bg-red-600 hover:bg-red-500 transition-colors">
+            <a href="{% url 'sair' %}"
+                class="px-6 py-2 rounded-lg text-white bg-red-600 hover:bg-red-500 transition-colors">
                 Sim, Sair
             </a>
         </div>
@@ -112,7 +125,7 @@
                     <p class="text-gray-500">Selecione uma conversa ou inicie uma nova.</p>
                 </div>`;
         };
-        
+
         const render = () => {
             renderSidebar();
             renderMainContent();
@@ -158,10 +171,9 @@
                 logoutModal.classList.add('hidden');
             }
         });
-        
+
         // Renderização inicial
         render();
     });
 </script>
 {% endblock %}
-
