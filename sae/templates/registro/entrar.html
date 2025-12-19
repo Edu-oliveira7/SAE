@@ -5,53 +5,65 @@
 {% block title %}Entrar{% endblock %}
 
 {% block content %}
-<div class="min-h-screen flex items-center justify-center p-4">
-    <div class="flex w-full max-w-5xl rounded-2xl ">
 
-        <!-- Lado esquerdo: Formulário -->
-        <div class="flex w-full lg:w-1/2 flex-col items-center justify-center p-8 sm:p-12">
-            <div class="w-full max-w-sm">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-                <div class="flex items-stretch space-x-3">
-                    <a href="{% url 'registre' %}" class="flex-1 rounded-md border border-black px-4 py-4 font-semibold text-gray-800 text-center">Registro</a>
-                    <a href="{% url 'entrar' %}" class="flex-1 rounded-md bg-black px-4 py-4 font-semibold text-white text-center">Entrar</a>
+<style>
+    .font-poppins {
+        font-family: 'Poppins', sans-serif;
+    }
+</style>
+
+<div class="min-h-screen flex items-center justify-center p-4 font-poppins">
+    <div class="flex w-full max-w-6xl rounded-2xl"> <div class="flex w-full lg:w-1/2 flex-col items-center justify-center p-8 sm:p-14">
+            <div class="w-full max-w-md"> <div class="flex items-stretch space-x-4">
+                    <a href="{% url 'registre' %}" class="flex-1 rounded-lg border-2 border-black px-4 py-4 text-lg font-bold text-gray-800 text-center transition hover:bg-gray-50">Registro</a>
+                    <a href="{% url 'entrar' %}" class="flex-1 rounded-lg bg-black px-4 py-4 text-lg font-bold text-white text-center transition hover:bg-gray-800">Entrar</a>
                 </div>
                 
-                <div class="mt-8 text-center lg:text-left">
-                    <h1 class="text-2xl font-bold text-gray-800">Bem-Vindo de Volta!</h1>
-                    <p class="text-gray-500 mt-2">Você nunca sabe que resultados virão da sua ação. 
-                        Mas se você não fizer nada, não existirão.</p>
+                <div class="mt-10 text-center lg:text-left">
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">Bem-Vindo de Volta!</h1>
+                    <p class="text-gray-500 mt-4 text-lg sm:text-xl leading-relaxed font-medium">
+                        Você nunca sabe que resultados virão da sua ação. Mas se você não fizer nada, não existirão.
+                    </p>
                 </div>
 
-                <!-- Bloco para exibir mensagens de erro -->
                 {% if messages %}
-                    <div class="mt-4">
+                    <div class="mt-6">
                         {% for message in messages %}
-                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                                <span class="block sm:inline">{{ message }}</span>
+                            <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 text-lg rounded-r" role="alert">
+                                <span class="block sm:inline font-medium">{{ message }}</span>
                             </div>
                         {% endfor %}
                     </div>
                 {% endif %}
-                <!-- Fim do Bloco de Mensagens -->
-
-                <form action="{% url 'entrar' %}" method="POST" class="mt-6 space-y-5">
+                <form action="{% url 'entrar' %}" method="POST" class="mt-8 space-y-6">
                     {% csrf_token %}
-                    <input type="text" name="username" placeholder="Username ou E-mail" required
-                           class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <input type="password" name="senha" placeholder="Senha" required
-                           class="w-full rounded-lg border border-black px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    
+                    <div>
+                        <input type="text" name="username" placeholder="Username ou E-mail" required
+                               class="w-full rounded-xl border-2 border-gray-800 px-5 py-4 text-lg font-medium focus:outline-none focus:border-black focus:ring-0 transition-colors placeholder-gray-400 text-gray-900">
+                    </div>
+                    
+                    <div>
+                        <input type="password" name="senha" placeholder="Senha" required
+                               class="w-full rounded-xl border-2 border-gray-800 px-5 py-4 text-lg font-medium focus:outline-none focus:border-black focus:ring-0 transition-colors placeholder-gray-400 text-gray-900">
+                    </div>
+
                     <div class="text-right">
-                        <a href="#" class="text-md font-medium text-gray-600 hover:underline">
+                        <a href="#" class="text-lg font-semibold text-gray-600 hover:text-black hover:underline transition-colors">
                             Esqueci a senha
                         </a>
                     </div>
-                    <div class="flex items-stretch space-x-4 pt-4">
-                        <a href="{% url 'index' %}" class="flex-1 rounded-lg border border-black py-3 text-center font-semibold text-gray-800 transition hover:bg-gray-100">
+
+                    <div class="flex items-stretch space-x-4 pt-2">
+                        <a href="{% url 'index' %}" class="flex-1 rounded-xl border-2 border-black py-4 text-center text-lg font-bold text-gray-800 transition hover:bg-gray-100">
                             Voltar
                         </a>
                         <button type="submit"
-                                class="flex-1 rounded-lg bg-black py-3 font-semibold text-white transition hover:bg-gray-800">
+                                class="flex-1 rounded-xl bg-black py-4 text-lg font-bold text-white transition hover:bg-gray-800 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                             Entrar
                         </button>
                     </div>
@@ -59,10 +71,9 @@
             </div>
         </div>
 
-        <!-- Lado direito: Imagem -->
-        <div class="relative hidden lg:block lg:w-1/2 p-4">
+        <div class="relative hidden lg:block lg:w-1/2 p-6">
             <img src="{% static 'imagens/estude.png' %}" alt="Mulher estudando ao ar livre"
-                 class="w-full h-full object-cover rounded-2xl">
+                 class="w-full h-full object-cover rounded-3xl shadow-2xl">
         </div>
 
     </div>
